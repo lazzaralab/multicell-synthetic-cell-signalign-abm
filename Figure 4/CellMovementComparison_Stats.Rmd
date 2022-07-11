@@ -1,0 +1,90 @@
+---
+title: "CellMovement_StatAnalysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+data <- read_excel ("HomotypicHeterotypic_all_features_5.3_ratios.xlsx")
+data
+```
+
+```{r}
+data_subset_25 <- subset(data, (Feature == "Green-Movement-Fract") & (Ratio == "1A|1B" | Ratio == "4A|1B" | Ratio == "9A|1B") & (Radius == "5.3") & (Time=="35"))
+data_subset_25$Group <- data_subset_25$Ratio
+data_subset_25 <- subset(data_subset_25, select = -c(Ratio,Radius,Time,Feature))
+data_subset_25$Group <- as.factor(data_subset_25$Group)
+data_subset_25$Value <- as.numeric(data_subset_25$Value)
+data_subset_25
+```
+```{r}
+shapiro.test(data_subset_25$Value)
+```
+```{r}
+kruskal.test(Value ~ Group, data=data_subset_25)
+```
+
+```{r}
+library(FSA)
+library(multcompView)
+results = dunnTest(Value ~ Group, data=data_subset_25,method="bh")
+results = results[["res"]]
+results
+```
+
+```{r}
+data_subset_50 <- subset(data, (Feature == "Green-Movement-Fract") & (Ratio == "1A|1B" | Ratio == "4A|1B" | Ratio == "9A|1B") & (Radius == "5.3") & (Time=="50"))
+data_subset_50$Group <- data_subset_50$Ratio
+data_subset_50 <- subset(data_subset_50, select = -c(Ratio,Radius,Time,Feature))
+data_subset_50$Group <- as.factor(data_subset_50$Group)
+data_subset_50$Value <- as.numeric(data_subset_50$Value)
+data_subset_50
+```
+
+```{r}
+shapiro.test(data_subset_50$Value)
+```
+
+```{r}
+kruskal.test(Value ~ Group, data=data_subset_50)
+```
+
+```{r}
+library(FSA)
+library(multcompView)
+results = dunnTest(Value ~ Group, data=data_subset_50,method="bh")
+results = results[["res"]]
+results
+```
+
+
+```{r}
+data_subset_75 <- subset(data, (Feature == "Green-Movement-Fract") & (Ratio == "1A|1B" | Ratio == "4A|1B" | Ratio == "9A|1B") & (Radius == "5.3") & (Time=="75"))
+data_subset_75$Group <- data_subset_75$Ratio
+data_subset_75 <- subset(data_subset_75, select = -c(Ratio,Radius,Time,Feature))
+data_subset_75$Group <- as.factor(data_subset_75$Group)
+data_subset_75$Value <- as.numeric(data_subset_75$Value)
+data_subset_75
+```
+
+```{r}
+shapiro.test(data_subset_75$Value)
+```
+
+```{r}
+kruskal.test(Value ~ Group, data=data_subset_75)
+```
+
+```{r}
+library(FSA)
+library(multcompView)
+results = dunnTest(Value ~ Group, data=data_subset_25,method="bh")
+results = results[["res"]]
+results
+```
+
+
+
