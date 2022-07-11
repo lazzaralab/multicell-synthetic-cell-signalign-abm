@@ -1,0 +1,5 @@
+mkdir("1A|1B_SphRad-5.3")
+mkdir("9A|1B_SphRad-5.3")
+mkdir("1A|9B_SphRad-5.3")
+mkdir("4A|1B_SphRad-5.3")
+mkdir("1A|4B_SphRad-5.3")
